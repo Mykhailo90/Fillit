@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/23 15:27:03 by msarapii         ###   ########.fr       */
+/*   Created: 2017/11/13 17:13:11 by msarapii          #+#    #+#             */
+/*   Updated: 2017/11/23 11:18:24 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
-int	main(int arg, char **argv)
-{	
-	char	**ar;
-	char 	*buffer;
-	char	*list_buf;
+void	*ft_memalloc(size_t size)
+{
+	void	*p;
 
-	if (arg != 2)
-	{
-		ft_putstr("Usage: You must take only one parametr!\n");
-		exit(1);
-	}
-	buffer = (char *)ft_memalloc(550);
-	list_buf = read_list(argv, buffer);
-	ar = ft_strsplit(list_buf);
-	check_valid_terminos(ar, count_tetriminos(list_buf));
-	return (0);
+	if (!size)
+		return (NULL);
+	if (!(p = malloc(size)))
+		return (NULL);
+	bzero(p, size);
+	return (p);
 }

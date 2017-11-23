@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/23 15:27:03 by msarapii         ###   ########.fr       */
+/*   Created: 2017/10/31 14:11:02 by msarapii          #+#    #+#             */
+/*   Updated: 2017/11/23 11:19:05 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
-int	main(int arg, char **argv)
-{	
-	char	**ar;
-	char 	*buffer;
-	char	*list_buf;
-
-	if (arg != 2)
-	{
-		ft_putstr("Usage: You must take only one parametr!\n");
-		exit(1);
-	}
-	buffer = (char *)ft_memalloc(550);
-	list_buf = read_list(argv, buffer);
-	ar = ft_strsplit(list_buf);
-	check_valid_terminos(ar, count_tetriminos(list_buf));
-	return (0);
+void	ft_bzero(void *s, size_t n)
+{
+	while (n--)
+		*(unsigned char *)(s++) = '\0';
 }

@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   count_tetriminos.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/23 15:27:03 by msarapii         ###   ########.fr       */
+/*   Created: 2017/11/23 15:18:57 by msarapii          #+#    #+#             */
+/*   Updated: 2017/11/23 15:21:23 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
-int	main(int arg, char **argv)
-{	
-	char	**ar;
-	char 	*buffer;
-	char	*list_buf;
+size_t	count_tetriminos(char const *s)
+{
+	size_t	i;
 
-	if (arg != 2)
+	i = 0;
+	while (*s)
 	{
-		ft_putstr("Usage: You must take only one parametr!\n");
-		exit(1);
+		if (*s == '\n')
+			s++;
+		while (*s != '\n')
+			s++;
+		if (*(s + 1) == '\n' || *(s + 1) == '\0')
+			i++;
+		if (*(s + 1) == '\0')
+			return (i);
 	}
-	buffer = (char *)ft_memalloc(550);
-	list_buf = read_list(argv, buffer);
-	ar = ft_strsplit(list_buf);
-	check_valid_terminos(ar, count_tetriminos(list_buf));
-	return (0);
+	return (i);
 }

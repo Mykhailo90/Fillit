@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/23 15:27:03 by msarapii         ###   ########.fr       */
+/*   Created: 2017/11/23 13:52:44 by msarapii          #+#    #+#             */
+/*   Updated: 2017/11/23 13:53:06 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
-int	main(int arg, char **argv)
-{	
-	char	**ar;
-	char 	*buffer;
-	char	*list_buf;
+char	*ft_strncpy(char *dest, const char *src, size_t n)
+{
+	char	*res;
 
-	if (arg != 2)
+	res = dest;
+	while (n && (*dest++ = *src++))
+		n--;
+	if (n)
 	{
-		ft_putstr("Usage: You must take only one parametr!\n");
-		exit(1);
+		while (--n)
+			*dest++ = '\0';
 	}
-	buffer = (char *)ft_memalloc(550);
-	list_buf = read_list(argv, buffer);
-	ar = ft_strsplit(list_buf);
-	check_valid_terminos(ar, count_tetriminos(list_buf));
-	return (0);
+	return (res);
 }

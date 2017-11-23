@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_type_symbols.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/23 15:27:03 by msarapii         ###   ########.fr       */
+/*   Created: 2017/11/23 13:04:00 by msarapii          #+#    #+#             */
+/*   Updated: 2017/11/23 13:15:26 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
-int	main(int arg, char **argv)
-{	
-	char	**ar;
-	char 	*buffer;
-	char	*list_buf;
-
-	if (arg != 2)
+void	check_type_symbols(char const *s)
+{
+	while (*s)
 	{
-		ft_putstr("Usage: You must take only one parametr!\n");
-		exit(1);
+		if (*s != '.' && *s != '#' && *s != '\n')
+		{
+			ft_putstr("error\n");
+			exit(1);
+		}
+		s++;
 	}
-	buffer = (char *)ft_memalloc(550);
-	list_buf = read_list(argv, buffer);
-	ar = ft_strsplit(list_buf);
-	check_valid_terminos(ar, count_tetriminos(list_buf));
-	return (0);
 }

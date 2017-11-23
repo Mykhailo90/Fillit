@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/23 15:27:03 by msarapii         ###   ########.fr       */
+/*   Created: 2017/11/23 10:52:07 by msarapii          #+#    #+#             */
+/*   Updated: 2017/11/23 11:04:40 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
-int	main(int arg, char **argv)
-{	
-	char	**ar;
-	char 	*buffer;
-	char	*list_buf;
+char	*read_list(char **argv, char *buffer)
+{
+	int		fd;
+	size_t	block;
+	size_t	len;
 
-	if (arg != 2)
+	len = 550;
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		return (0);
+	block = read(fd, buffer, len);
+	if (block < 20 || block > 545)
 	{
-		ft_putstr("Usage: You must take only one parametr!\n");
+		ft_putstr("error\n");
 		exit(1);
 	}
-	buffer = (char *)ft_memalloc(550);
-	list_buf = read_list(argv, buffer);
-	ar = ft_strsplit(list_buf);
-	check_valid_terminos(ar, count_tetriminos(list_buf));
-	return (0);
+	close(fd);
+	return (buffer);
 }
