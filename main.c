@@ -6,7 +6,7 @@
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/23 15:27:03 by msarapii         ###   ########.fr       */
+/*   Updated: 2017/11/24 11:02:31 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdio.h>
 
 int	main(int arg, char **argv)
-{	
+{
 	char	**ar;
-	char 	*buffer;
+	char	*buffer;
 	char	*list_buf;
 
 	if (arg != 2)
@@ -27,6 +27,6 @@ int	main(int arg, char **argv)
 	buffer = (char *)ft_memalloc(550);
 	list_buf = read_list(argv, buffer);
 	ar = ft_strsplit(list_buf);
-	check_valid_terminos(ar, count_tetriminos(list_buf));
+	check_valid_terminos(ar);
 	return (0);
 }

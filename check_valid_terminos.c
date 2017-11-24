@@ -6,39 +6,46 @@
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 14:30:27 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/23 15:29:12 by msarapii         ###   ########.fr       */
+/*   Updated: 2017/11/24 10:58:00 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
 
-void	check_valid_terminos(char **ar, size_t size)
+static void		check_one_termino(char *str)
 {
-	int	point;
-	int	sl;
-	int	n;
-	int i;
+	int			point;
+	int			sl;
+	int			n;
 
-	while (size--)
+	point = 0;
+	sl = 0;
+	n = 0;
+	while (*str != '\0')
 	{
-		i = 0;
-		point = 0;
-		sl = 0;
-		n = 0;
-		while (*ar[i])
-		{
-			if (*ar[i] == '.')
-				point++;
-			else if (*ar[i] == '#')
-				sl++;
-			else if (*ar[i] == '\n')
-				n++;
-			i++;
-		}
-		if (point != 12 && sl != 4 && n != 3)
-		{
-			ft_putstr("error\n");
-			exit(1);
-		}
+		if (*str == '.')
+			point++;
+		else if (*str == '#')
+			sl++;
+		else if (*str == '\n')
+			n++;
+		str++;
+	}
+	if (point != 12 && sl != 4 && n != 3)
+	{
+		ft_putstr("error\n");
+		exit(1);
+	}
+}
+
+void			check_valid_terminos(char **ar)
+{
+	int			j;
+
+	j = 0;
+	while (ar[j])
+	{
+		check_one_termino(ar[j]);
+		j++;
 	}
 }
