@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   creat_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/25 18:05:46 by msarapii          #+#    #+#             */
+/*   Updated: 2017/11/25 18:05:49 by msarapii         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "funclib.h"
+
+static void		input_list_x(char **ar, t_list *list, size_t *k, size_t *i)
+{
+	size_t		n;
+
+	n = 0;
+	while (ar[*k][*i] != '\0')
+	{
+		if (ar[*k][*i] == '#' && *i < 5)
+			list->x[n] = *i;
+		else if (ar[*k][*i] == '#' && *i < 10)
+			list->x[n] = *i - 5;
+		else if (ar[*k][*i] == '#' && *i < 15)
+			list->x[n] = *i - 10;
+		else if (ar[*k][*i] == '#' && *i < 15)
+			list->x[n] = *i - 15;
+		n = n + 1;
+		*i = *i + 1;
+	}
+}
+
+static void		input_list_y(char **ar, t_list *list, size_t *k, size_t *i)
+{
+	size_t		n;
+
+	n = 0;
+	while (ar[*k][*i] != '\0')
+	{
+		if (ar[*k][*i] == '#' && *i < 5)
+			list->y[n] = 0;
+		else if (ar[*k][*i] == '#' && *i < 10)
+			list->y[n] = 1;
+		else if (ar[*k][*i] == '#' && *i < 15)
+			list->y[n] = 2;
+		else if (ar[*k][*i] == '#' && *i < 15)
+			list->y[n] = 3;
+		n = n + 1;
+		*i = *i + 1;
+	}
+}
+
+static void		inputs(char **ar, t_list *list, size_t j)
+{
+	size_t		i;
+	size_t		k;
+
+	i = 0;
+	k = 0;
+	while (ar[k])
+	{
+		i = 0;
+		input_list_x(ar, list, &k, &i);
+		input_list_y(ar, list, &k, &i);
+		list->ch = 'A' + k;
+		if (j == 1)
+			list->next = NULL;
+		else if (j-- > 1)
+		{
+			list->next = ft_memalloc(sizeof(t_list));
+			list = list->next;
+		}
+		k++;
+	}
+}
+
+t_list			*creat_list(char **ar, size_t j)
+{
+	t_list		*list;
+	t_list		*stlist;
+
+	list = NULL;
+	if (!(list = ft_memalloc(sizeof(t_list))))
+		return (NULL);
+	stlist = list;
+	inputs(ar, list, j);
+	return (stlist);
+}

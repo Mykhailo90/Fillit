@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   creat_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 11:32:42 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/24 11:00:23 by msarapii         ###   ########.fr       */
+/*   Created: 2017/11/25 09:13:57 by msarapii          #+#    #+#             */
+/*   Updated: 2017/11/25 09:13:58 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
 
-char			**ft_strsplit(char const *s, size_t *j)
+char			**creat_map(size_t j)
 {
-	char		**arr_ptr;
+	char		**map;
 	size_t		i;
-	size_t		k;
+	size_t		n;
 
-	if (!s)
-		return (NULL);
-	check_type_symbols(s);
-	*j = count_tetriminos(s);
-	k = *j;
 	i = 0;
-	arr_ptr = NULL;
-	if (!(arr_ptr = (char **)ft_memalloc(sizeof(s) * k + 1)))
-		return (NULL);
-	while (k--)
-	{
-		if (!(arr_ptr[i] = ft_memalloc(sizeof(s) * 20)))
-			return (NULL);
-		while (*s == '\n')
-			s++;
-		ft_strncpy(arr_ptr[i], s, 20);
-		s = s + 20;
+	n = 0;
+	while (i * i <= 4 * j)
 		i++;
+	if (!(map = (char **)ft_memalloc(sizeof(char *) * (i + 1))))
+		return (NULL);
+	map[i] = 0;
+	while (n < i)
+	{
+		map[n] = (char *)ft_memalloc(sizeof(char) * (i + 1));
+		n++;
 	}
-	arr_ptr[i] = 0;
-	return (arr_ptr);
+	n = 0;
+	while (map[n])
+	{
+		ft_memset(map[n], '.', sizeof(char) * i);
+		n++;
+	}
+	return (map);
 }

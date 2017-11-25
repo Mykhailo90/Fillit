@@ -19,6 +19,7 @@
 
 typedef struct		s_list
 {
+	char			ch;
 	int				x[4];
 	int				y[4];
 	struct s_list	*next;
@@ -32,8 +33,11 @@ void				ft_bzero(void *s, size_t n);
 void				ft_putstr(char const *s);
 char				*read_list(char **argv, char *buffer);
 void				*ft_memalloc(size_t size);
-char				**ft_strsplit(char const *s);
+char				**ft_strsplit(char const *s, size_t *j);
 void				check_type_symbols(char const *s);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
 void				check_form(char **ar);
+char				**creat_map(size_t j);
+void				*ft_memset(void *s, int c, size_t n);
+t_list				*creat_list(char **ar, size_t j);
 #endif

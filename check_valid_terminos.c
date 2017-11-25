@@ -38,6 +38,26 @@ static void		check_one_termino(char *str)
 	}
 }
 
+static void		check_one_termino2(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*str != '\0')
+	{
+		if (*str != '\n')
+			i++;
+		else if (*str == '\n' && i != 4)
+		{
+			ft_putstr("error\n");
+			exit(1);
+		}
+		else
+			i = 0;
+		str++;
+	}
+}
+
 void			check_valid_terminos(char **ar)
 {
 	int			j;
@@ -46,6 +66,7 @@ void			check_valid_terminos(char **ar)
 	while (ar[j])
 	{
 		check_one_termino(ar[j]);
+		check_one_termino2(ar[j]);
 		j++;
 	}
 }
