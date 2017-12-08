@@ -11,66 +11,68 @@
 /* ************************************************************************** */
 
 #include "funclib.h"
+#include <stdio.h>
 
-static void		input_list_x(char **ar, t_list *list, size_t *k, size_t *i)
+static void		input_list_x(char *ar, t_list *list)
 {
 	size_t		n;
+	size_t		i;
 
 	n = 0;
-	while (ar[*k][*i] != '\0')
+	i = 0;
+	while (ar[i] != '\0')
 	{
-		if (ar[*k][*i] == '#' && *i < 5)
-			list->x[n] = *i;
-		else if (ar[*k][*i] == '#' && *i < 10)
-			list->x[n] = *i - 5;
-		else if (ar[*k][*i] == '#' && *i < 15)
-			list->x[n] = *i - 10;
-		else if (ar[*k][*i] == '#' && *i < 15)
-			list->x[n] = *i - 15;
-		n = n + 1;
-		*i = *i + 1;
+		if (ar[i] == '#' && i < 5)
+			list->x[n++] = i;
+		else if (ar[i] == '#' && i < 10)
+			list->x[n++] = i - 5;
+		else if (ar[i] == '#' && i < 15)
+			list->x[n++] = i - 10;
+		else if (ar[i] == '#' && i < 15)
+			list->x[n++] = i - 15;
+		i++;;
 	}
 }
 
-static void		input_list_y(char **ar, t_list *list, size_t *k, size_t *i)
+static void		input_list_y(char *ar, t_list *list)
 {
 	size_t		n;
+	size_t		i;
 
 	n = 0;
-	while (ar[*k][*i] != '\0')
+	i = 0;
+	while (ar[i] != '\0')
 	{
-		if (ar[*k][*i] == '#' && *i < 5)
-			list->y[n] = 0;
-		else if (ar[*k][*i] == '#' && *i < 10)
-			list->y[n] = 1;
-		else if (ar[*k][*i] == '#' && *i < 15)
-			list->y[n] = 2;
-		else if (ar[*k][*i] == '#' && *i < 15)
-			list->y[n] = 3;
-		n = n + 1;
-		*i = *i + 1;
+		if (ar[i] == '#' && i < 5)
+			list->y[n++] = 0;
+		else if (ar[i] == '#' && i < 10)
+			list->y[n++] = 1;
+		else if (ar[i] == '#' && i < 15)
+			list->y[n++] = 2;
+		else if (ar[i] == '#' && i < 15)
+			list->y[n++] = 3;
+		i++;
 	}
 }
 
 static void		inputs(char **ar, t_list *list, size_t j)
 {
-	size_t		i;
 	size_t		k;
-
-	i = 0;
+	
 	k = 0;
+	list->prev = NULL;	
 	while (ar[k])
 	{
-		i = 0;
-		input_list_x(ar, list, &k, &i);
-		input_list_y(ar, list, &k, &i);
+		input_list_x(ar[k], list);
+		input_list_y(ar[k], list);
 		list->ch = 'A' + k;
 		if (j == 1)
 			list->next = NULL;
 		else if (j-- > 1)
 		{
 			list->next = ft_memalloc(sizeof(t_list));
-			list = list->next;
+			list->next->prev = list;
+			list = list->next;			
 		}
 		k++;
 	}

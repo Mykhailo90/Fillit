@@ -19,7 +19,7 @@ char			**creat_map(size_t j)
 	size_t		n;
 
 	i = 0;
-	n = 0;
+	n = 0;	
 	while (i * i <= 4 * j)
 		i++;
 	if (!(map = (char **)ft_memalloc(sizeof(char *) * (i + 1))))

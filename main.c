@@ -20,9 +20,10 @@ int	main(int arg, char **argv)
 	char	*buffer;
 	char	*list_buf;
 	size_t	j;
-
-	t_list *l;
 	
+	
+	size_t a;
+	a = 0;
 	if (arg != 2)
 	{
 		ft_putstr("Usage: You must take only one parametr!\n");
@@ -33,17 +34,14 @@ int	main(int arg, char **argv)
 	ar = ft_strsplit(list_buf, &j);
 	check_valid_terminos(ar);
 	check_form(ar);
-	l = creat_list(ar, j);
-	map = creat_map(j);	
-
-	l = l->next;
-	printf("%d", l->x[0]);
-	printf("%d", l->x[1]);
-	printf("%d", l->x[2]);
-	printf("%d\n", l->x[3]);
-	printf("%d", l->y[0]);
-	printf("%d", l->y[1]);
-	printf("%d", l->y[2]);
-	printf("%d", l->y[3]);
+	map = creat_map(j);
+	map = put_in_map(map, creat_list(ar, j));
+	
+	while (map[a])
+	{
+		printf("%s\n", map[a]);
+		a++;
+	}
+	
 	return (0);
 }

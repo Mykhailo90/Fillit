@@ -23,6 +23,7 @@ typedef struct		s_list
 	int				x[4];
 	int				y[4];
 	struct s_list	*next;
+	struct s_list	*prev;
 }					t_list;
 
 size_t				count_tetriminos(char const *s);
@@ -40,4 +41,5 @@ void				check_form(char **ar);
 char				**creat_map(size_t j);
 void				*ft_memset(void *s, int c, size_t n);
 t_list				*creat_list(char **ar, size_t j);
+char				**put_in_map(char **map, t_list *l);
 #endif
