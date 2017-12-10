@@ -17,15 +17,19 @@ char			**creat_map(size_t j)
 	char		**map;
 	size_t		i;
 	size_t		n;
-
+	int a;
+	a = 0;
+	
 	i = 0;
 	n = 0;	
-	while (i * i <= 4 * j)
+	while (i * i < 4 * j)
 		i++;
 	if (!(map = (char **)ft_memalloc(sizeof(char *) * (i + 1))))
+
 		return (NULL);
 	map[i] = 0;
 	while (n < i)
+
 	{
 		map[n] = (char *)ft_memalloc(sizeof(char) * (i + 1));
 		n++;
@@ -35,6 +39,12 @@ char			**creat_map(size_t j)
 	{
 		ft_memset(map[n], '.', sizeof(char) * i);
 		n++;
+	}
+	
+	while (map[a])
+	{
+		printf("%s\n", map[a]);
+		a++;
 	}
 	return (map);
 }

@@ -20,8 +20,7 @@ int	main(int arg, char **argv)
 	char	*buffer;
 	char	*list_buf;
 	size_t	j;
-	
-	
+		
 	size_t a;
 	a = 0;
 	if (arg != 2)
@@ -35,7 +34,7 @@ int	main(int arg, char **argv)
 	check_valid_terminos(ar);
 	check_form(ar);
 	map = creat_map(j);
-	map = put_in_map(map, creat_list(ar, j));
+	map = put_in_map(map, creat_list(ar, j), 0, 0);
 	
 	while (map[a])
 	{

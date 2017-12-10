@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
+#include <stdio.h>
+
 typedef struct		s_list
 {
 	char			ch;
@@ -41,5 +43,5 @@ void				check_form(char **ar);
 char				**creat_map(size_t j);
 void				*ft_memset(void *s, int c, size_t n);
 t_list				*creat_list(char **ar, size_t j);
-char				**put_in_map(char **map, t_list *l);
+char				**put_in_map(char **map, t_list *l, int x, int y);
 #endif
