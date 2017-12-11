@@ -19,7 +19,9 @@ int	main(int arg, char **argv)
 	char	**map;
 	char	*buffer;
 	char	*list_buf;
-	size_t	j;
+	int	j;
+	t_list *begin;
+	begin = NULL;
 		
 	size_t a;
 	a = 0;
@@ -33,9 +35,10 @@ int	main(int arg, char **argv)
 	ar = ft_strsplit(list_buf, &j);
 	check_valid_terminos(ar);
 	check_form(ar);
-	map = creat_map(j);
-	map = put_in_map(map, creat_list(ar, j), 0, 0);
-	
+	begin = creat_list(ar, j);
+	printf("%d\n%d\n%d\n%d\n", begin->x[0], begin->x[1], begin->x[2], begin->x[3]);
+	map = solver(j, begin);
+		
 	while (map[a])
 	{
 		printf("%s\n", map[a]);

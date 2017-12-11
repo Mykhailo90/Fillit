@@ -12,17 +12,15 @@
 
 #include "funclib.h"
 
-char			**creat_map(size_t j)
+char			**creat_map(int j)
 {
 	char		**map;
-	size_t		i;
-	size_t		n;
-	int a;
-	a = 0;
+	int		i;
+	int		n;
 	
 	i = 0;
 	n = 0;	
-	while (i * i < 4 * j)
+	while (i * i <= 4 * j)
 		i++;
 	if (!(map = (char **)ft_memalloc(sizeof(char *) * (i + 1))))
 
@@ -39,12 +37,6 @@ char			**creat_map(size_t j)
 	{
 		ft_memset(map[n], '.', sizeof(char) * i);
 		n++;
-	}
-	
-	while (map[a])
-	{
-		printf("%s\n", map[a]);
-		a++;
-	}
+	}	
 	return (map);
 }

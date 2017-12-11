@@ -36,12 +36,13 @@ void				ft_bzero(void *s, size_t n);
 void				ft_putstr(char const *s);
 char				*read_list(char **argv, char *buffer);
 void				*ft_memalloc(size_t size);
-char				**ft_strsplit(char const *s, size_t *j);
+char				**ft_strsplit(char const *s, int *j);
 void				check_type_symbols(char const *s);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
 void				check_form(char **ar);
-char				**creat_map(size_t j);
+char				**creat_map(int j);
 void				*ft_memset(void *s, int c, size_t n);
 t_list				*creat_list(char **ar, size_t j);
-char				**put_in_map(char **map, t_list *l, int x, int y);
+int					func(char **map, t_list *l, int size);
+char				**solver(int size, t_list *l);
 #endif

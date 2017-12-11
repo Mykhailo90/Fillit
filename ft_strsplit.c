@@ -12,11 +12,11 @@
 
 #include "funclib.h"
 
-char			**ft_strsplit(char const *s, size_t *j)
+char			**ft_strsplit(char const *s, int *j)
 {
 	char		**arr_ptr;
-	size_t		i;
-	size_t		k;
+	int		i;
+	int		k;
 
 	if (!s)
 		return (NULL);
