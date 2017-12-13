@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
 static void		input_list_x(char *ar, t_list *list)
 {
@@ -20,15 +19,17 @@ static void		input_list_x(char *ar, t_list *list)
 
 	n = 0;
 	i = 0;
+
 	while (ar[i] != '\0')
 	{
+		
 		if (ar[i] == '#' && i < 5)
 			list->x[n++] = i;
 		else if (ar[i] == '#' && i < 10)
 			list->x[n++] = i - 5;
 		else if (ar[i] == '#' && i < 15)
 			list->x[n++] = i - 10;
-		else if (ar[i] == '#' && i < 15)
+		else if (ar[i] == '#' && i < 20)
 			list->x[n++] = i - 15;
 		i++;;
 	}
@@ -49,7 +50,7 @@ static void		input_list_y(char *ar, t_list *list)
 			list->y[n++] = 1;
 		else if (ar[i] == '#' && i < 15)
 			list->y[n++] = 2;
-		else if (ar[i] == '#' && i < 15)
+		else if (ar[i] == '#' && i < 20)
 			list->y[n++] = 3;
 		i++;
 	}

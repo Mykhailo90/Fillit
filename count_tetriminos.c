@@ -19,14 +19,9 @@ size_t	count_tetriminos(char const *s)
 	i = 0;
 	while (*s)
 	{
-		if (*s == '\n')
-			s++;
-		while (*s != '\n')
-			s++;
-		if (*(s + 1) == '\n' || *(s + 1) == '\0')
+		if (*s == '\n' && *(s + 1) == '\n')
 			i++;
-		if (*(s + 1) == '\0')
-			return (i);
+		s++;
 	}
-	return (i);
+	return (i + 1);
 }

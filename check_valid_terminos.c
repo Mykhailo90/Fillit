@@ -17,7 +17,7 @@ static void		check_one_termino(char *str)
 	int			point;
 	int			sl;
 	int			n;
-
+	
 	point = 0;
 	sl = 0;
 	n = 0;
@@ -31,7 +31,7 @@ static void		check_one_termino(char *str)
 			n++;
 		str++;
 	}
-	if (point != 12 && sl != 4 && n != 3)
+	if (point != 12 || sl != 4 || n != 4)
 	{
 		ft_putstr("error\n");
 		exit(1);

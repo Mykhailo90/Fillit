@@ -44,5 +44,5 @@ char				**creat_map(int j);
 void				*ft_memset(void *s, int c, size_t n);
 t_list				*creat_list(char **ar, size_t j);
 int					func(char **map, t_list *l, int size);
-char				**solver(int size, t_list *l);
+char				**put_in_map(int size, t_list *l);
 #endif

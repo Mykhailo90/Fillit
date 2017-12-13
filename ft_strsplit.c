@@ -12,6 +12,22 @@
 
 #include "funclib.h"
 
+static void check_str(const char *s)
+{
+	size_t i;
+	size_t n;
+
+	i = 0;
+	n = count_tetriminos(s);
+	while (*s++)
+		i++;
+	if (i / n != 20)
+	{
+		ft_putstr("error\n");
+		exit(1);
+	}
+}
+
 char			**ft_strsplit(char const *s, int *j)
 {
 	char		**arr_ptr;
@@ -21,9 +37,11 @@ char			**ft_strsplit(char const *s, int *j)
 	if (!s)
 		return (NULL);
 	check_type_symbols(s);
+	check_str(s);
 	*j = count_tetriminos(s);
 	k = *j;
 	i = 0;
+
 	arr_ptr = NULL;
 	if (!(arr_ptr = (char **)ft_memalloc(sizeof(s) * k + 1)))
 		return (NULL);

@@ -36,9 +36,8 @@ int	main(int arg, char **argv)
 	check_valid_terminos(ar);
 	check_form(ar);
 	begin = creat_list(ar, j);
-	printf("%d\n%d\n%d\n%d\n", begin->x[0], begin->x[1], begin->x[2], begin->x[3]);
-	map = solver(j, begin);
-		
+	
+	map = put_in_map(j, begin);		
 	while (map[a])
 	{
 		printf("%s\n", map[a]);

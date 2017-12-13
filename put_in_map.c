@@ -12,31 +12,12 @@
 
 #include "funclib.h"
 
-static char  **set_termino(char **map, t_list *l, int i, int n)
+static void  set_termino(char **map, t_list *l, int i, int n)
 {
 	map[i][n] = l->ch;
 	map[l->y[1] - l->y[0] + i][n + l->x[1] - l->x[0]] = l->ch;
 	map[l->y[2] - l->y[0] + i][n + l->x[2] - l->x[0]] = l->ch;
 	map[l->y[3] - l->y[0] + i][n + l->x[3] - l->x[0]] = l->ch;
-	return (map);
-}
-
-static int check_set_termino(char **map, t_list *l, int i, int n, int size_map)
-{
-
-	if (map[i][n] == '.' &&
-		(l->y[1] - l->y[0] + i < size_map) &&
-		(l->x[1] - l->x[0] + n < size_map) &&
-		map[l->y[1] + i][l->x[1] - l->x[0] + n] == '.' &&
-		(l->y[2] - l->y[0] + i < size_map) &&
-		(l->x[2] - l->x[0] + n < size_map) &&
-		map[l->y[2] - l->y[0] + i][l->x[2] - l->x[0] + n] == '.' &&
-		(l->y[3] - l->y[0] + i < size_map) &&
-		(l->x[3] - l->x[0] + n < size_map) &&
-		map[l->y[3] - l->y[0] + i][l->x[3] - l->x[0] + n] == '.')
-			return (1);
-		else
-			return (0);
 }
 
 static int	count_map_len(char ** map)
@@ -49,26 +30,25 @@ static int	count_map_len(char ** map)
 	return (i);
 }
 
-static int 	search_point(char **map, t_list *l, int x, int y)
-{
-	int size_map;
-		
+static int check_set_termino(char **map, t_list *l, int i, int n, int size_map)
+{	
 	size_map = count_map_len(map);
-	while (y < size_map)
-	{
-		x = 0;
-		while (x < size_map)
-		{
-			if (map[y][x] == '.')
-			{
-				if(check_set_termino(map, l, y, x, size_map))
-					return (1);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (0);
+	
+	if (i < size_map && n < size_map &&
+		map[i][n] == '.' &&
+		(l->y[1] - l->y[0] + i < size_map) &&
+		(l->x[1] - l->x[0] + n < size_map) &&
+		map[l->y[1] - l->y[0] + i][l->x[1] - l->x[0] + n] == '.' &&
+		(l->y[2] - l->y[0] + i < size_map) &&
+		(l->x[2] - l->x[0] + n < size_map) &&
+		map[l->y[2] - l->y[0] + i][l->x[2] - l->x[0] + n] == '.' &&
+		(l->y[3] - l->y[0] + i < size_map) &&
+		(l->x[3] - l->x[0] + n < size_map) &&
+		map[l->y[3] - l->y[0] + i][l->x[3] - l->x[0] + n] == '.'){
+	
+			return (1);}
+		else
+			return (0);
 }
 
 char	**delete_tetrimoino(char **map, char ch)
@@ -94,54 +74,45 @@ char	**delete_tetrimoino(char **map, char ch)
 	return (map);
 }
 
-char	**solver(int size, t_list *l)
-{
-
-	size = 4;
+char	**put_in_map(int size, t_list *l)
+{	
 	char **map;
+
 	map = creat_map(size);
-	
-	func(map, l, size);
-	// while ((func(map, l, size)))
-	// {
-	// 	size++;
-	// 	map = creat_map(size);
-	// }
-	//map[0][0] = 'A';
+	while (!func(map, l, size))
+	{			
+	    	size++;
+	    	map = creat_map(size);
+	}
 	return (map);
 }
 
 int		func(char **map, t_list *l, int size)
 {
 	int		x;
-	int		y;
-
-
-	y = 0;
+	int		y;	
+	
+	y = 0;	
 	if (!l)
 		return (1);
-	while (y < size )
+	while (y < size)
 	{
-
 		x = 0;
-		while (x < size )
+		while (x < size)
 		{
-			if (search_point(map, l, x, y))
+			if (check_set_termino(map, l, y, x, size))
 			{
-				map = set_termino(map,l, y, x);
-				l = l->next;
+				set_termino(map,l, y, x);
 				if (l == NULL)
-					return (1);
-				// printf("map:%s\n", map[0]);
-				// if (func(map, l->next, size))
-				// 	return (1);
-				// else
-				// map = delete_tetrimoino(map, l->ch);
+					return (0);
+				if (func(map, l->next, size))
+				 	return (1);
+				else
+				 map = delete_tetrimoino(map, l->ch);
 			}
 			x++;
 		}
 		y++;
 	}
-
 	return (0);
 }
