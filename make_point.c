@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   make_point.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/31 13:10:14 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/21 00:06:55 by msarapii         ###   ########.fr       */
+/*   Created: 2017/12/14 22:10:38 by msarapii          #+#    #+#             */
+/*   Updated: 2017/12/14 22:10:41 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
 
-void		*ft_memset(void *s, int c, size_t n)
+void		*make_point(void *s, int c, size_t n)
 {
 	size_t	i;
 	char	*s1;

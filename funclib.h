@@ -13,7 +13,6 @@
 #ifndef FUNCLIB_H
 # define FUNCLIB_H
 # include <unistd.h>
-# include <string.h>
 # include <stdlib.h>
 # include <fcntl.h>
 
@@ -48,7 +47,7 @@ void				check_type_symbols(char const *s);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
 void				check_form(char **ar);
 char				**creat_map(int j);
-void				*ft_memset(void *s, int c, size_t n);
+void				*make_point(void *s, int c, size_t n);
 t_list				*creat_list(char **ar, size_t j);
 int					func_rec(char **map, t_list *l, int size);
 char				**put_in_map(int size, t_list *l);

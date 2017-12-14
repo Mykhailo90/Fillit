@@ -43,6 +43,11 @@ static void		check_one_termino2(char *str)
 	int	i;
 
 	i = 0;
+	if (str[0] != '.' || str[0] != '#')
+	{
+		ft_putstr("error\n");
+		exit(1);
+	}
 	while (*str != '\0')
 	{
 		if (*str != '\n')

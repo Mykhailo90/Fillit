@@ -20,7 +20,10 @@ char	*read_list(char **argv, char *buffer)
 
 	len = 550;
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (0);
+	{
+		ft_putstr("error\n");
+		exit(1);
+	}
 	block = read(fd, buffer, len);
 	if (block < 20 || block > 545)
 	{

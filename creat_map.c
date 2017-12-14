@@ -33,7 +33,7 @@ char		**creat_map(int j)
 	n = 0;
 	while (map[n])
 	{
-		ft_memset(map[n], '.', sizeof(char) * i);
+		make_point(map[n], '.', sizeof(char) * i);
 		n++;
 	}
 	return (map);
