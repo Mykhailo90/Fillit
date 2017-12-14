@@ -6,16 +6,16 @@
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 11:32:42 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/24 11:00:23 by msarapii         ###   ########.fr       */
+/*   Updated: 2017/12/14 12:24:29 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
 
-static void check_str(const char *s)
+static void		check_str(const char *s)
 {
-	size_t i;
-	size_t n;
+	size_t		i;
+	size_t		n;
 
 	i = 0;
 	n = count_tetriminos(s);
@@ -31,8 +31,8 @@ static void check_str(const char *s)
 char			**ft_strsplit(char const *s, int *j)
 {
 	char		**arr_ptr;
-	int		i;
-	int		k;
+	int			i;
+	int			k;
 
 	if (!s)
 		return (NULL);
@@ -41,8 +41,6 @@ char			**ft_strsplit(char const *s, int *j)
 	*j = count_tetriminos(s);
 	k = *j;
 	i = 0;
-
-	arr_ptr = NULL;
 	if (!(arr_ptr = (char **)ft_memalloc(sizeof(s) * k + 1)))
 		return (NULL);
 	while (k--)

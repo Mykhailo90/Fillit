@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_in_map.c                                       :+:      :+:    :+:   */
+/*   delete_tetrimino.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 20:19:19 by msarapii          #+#    #+#             */
-/*   Updated: 2017/12/14 12:44:33 by msarapii         ###   ########.fr       */
+/*   Created: 2017/12/14 11:46:21 by msarapii          #+#    #+#             */
+/*   Updated: 2017/12/14 11:46:31 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "funclib.h"
-
-char	**put_in_map(int size, t_list *l)
+char	**delete_tetrimoino(char **map, char ch)
 {
-	char **map;
+	int i;
+	int n;
 
-	map = creat_map(size);
-	size = count_map_len(map);
-	while (!func_rec(map, l, size))
+	i = 0;
+	n = 0;
+	while (map[i])
 	{
-		size++;
-		map = creat_map(size);
+		n = 0;
+		while (map[i][n] != '\0')
+		{
+			if (map[i][n] == ch)
+			{
+				map[i][n] = '.';
+			}
+			n++;
+		}
+		i++;
 	}
 	return (map);
 }

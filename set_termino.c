@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_termino.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/12/14 12:29:10 by msarapii         ###   ########.fr       */
+/*   Created: 2017/12/14 11:50:27 by msarapii          #+#    #+#             */
+/*   Updated: 2017/12/14 12:46:38 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
-int	main(int arg, char **argv)
+void	set_termino(char **map, t_list *l, int i, int n)
 {
-	char	**ar;
-	char	**map;
-	int		j;
-	size_t	a;
-
-	a = 0;
-	if (arg != 2)
-	{
-		ft_putstr("Usage: You must take only one parametr!\n");
-		exit(1);
-	}
-	ar = ft_strsplit(read_list(argv, (char *)ft_memalloc(550)), &j);
-	check_valid_terminos(ar);
-	check_form(ar);
-	map = put_in_map(j, creat_list(ar, j));
-	while (map[a])
-	{
-		ft_putstr(map[a]);
-		ft_putstr("\n");
-		a++;
-	}
-	return (0);
+	map[i][n] = l->ch;
+	map[l->y[1] - l->y[0] + i][n + l->x[1] - l->x[0]] = l->ch;
+	map[l->y[2] - l->y[0] + i][n + l->x[2] - l->x[0]] = l->ch;
+	map[l->y[3] - l->y[0] + i][n + l->x[3] - l->x[0]] = l->ch;
 }

@@ -6,7 +6,7 @@
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 14:30:27 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/24 10:58:00 by msarapii         ###   ########.fr       */
+/*   Updated: 2017/12/14 12:15:05 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		check_one_termino(char *str)
 	int			point;
 	int			sl;
 	int			n;
-	
+
 	point = 0;
 	sl = 0;
 	n = 0;

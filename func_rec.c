@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   func_rec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 15:59:21 by msarapii          #+#    #+#             */
-/*   Updated: 2017/12/14 12:29:10 by msarapii         ###   ########.fr       */
+/*   Created: 2017/12/14 11:26:09 by msarapii          #+#    #+#             */
+/*   Updated: 2017/12/14 12:30:06 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "funclib.h"
-#include <stdio.h>
 
-int	main(int arg, char **argv)
+int		func_rec(char **map, t_list *l, int size)
 {
-	char	**ar;
-	char	**map;
-	int		j;
-	size_t	a;
+	t_xy	xy;
 
-	a = 0;
-	if (arg != 2)
+	xy.y = 0;
+	if (!l)
+		return (1);
+	while (xy.y < size)
 	{
-		ft_putstr("Usage: You must take only one parametr!\n");
-		exit(1);
-	}
-	ar = ft_strsplit(read_list(argv, (char *)ft_memalloc(550)), &j);
-	check_valid_terminos(ar);
-	check_form(ar);
-	map = put_in_map(j, creat_list(ar, j));
-	while (map[a])
-	{
-		ft_putstr(map[a]);
-		ft_putstr("\n");
-		a++;
+		xy.x = 0;
+		while (xy.x < size)
+		{
+			if (check_set_termino(map, l, xy.y, xy.x))
+			{
+				set_termino(map, l, xy.y, xy.x);
+				if (l == NULL)
+					return (0);
+				if (func_rec(map, l->next, size))
+					return (1);
+				else
+					map = delete_tetrimoino(map, l->ch);
+			}
+			xy.x++;
+		}
+		xy.y++;
 	}
 	return (0);
 }
