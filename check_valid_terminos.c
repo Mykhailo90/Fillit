@@ -43,11 +43,6 @@ static void		check_one_termino2(char *str)
 	int	i;
 
 	i = 0;
-	if (str[0] != '.' || str[0] != '#')
-	{
-		ft_putstr("error\n");
-		exit(1);
-	}
 	while (*str != '\0')
 	{
 		if (*str != '\n')
@@ -63,6 +58,22 @@ static void		check_one_termino2(char *str)
 	}
 }
 
+static void		check_one_termino3(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\n' && str[i + 1] == '\n' && str[i + 2] == '\n')
+		{
+			ft_putstr("error\n");
+			exit(1);
+		}
+		i++;
+	}
+}
+
 void			check_valid_terminos(char **ar)
 {
 	int			j;
@@ -72,6 +83,7 @@ void			check_valid_terminos(char **ar)
 	{
 		check_one_termino(ar[j]);
 		check_one_termino2(ar[j]);
+		check_one_termino3(ar[j]);
 		j++;
 	}
 }
